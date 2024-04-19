@@ -10,15 +10,15 @@ const ThemeSwitch = () => {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return <div>loading</div>;
+  if (!mounted) return <div className="ml-auto">loading</div>;
 
   if (resolvedTheme === "dark")
     return (
       <div
-        className="flex items-center gap-2 cursor-pointer"
+        className="flex items-center gap-2 cursor-pointer ml-auto"
         onClick={() => setTheme("light")}
       >
-        <IconMoonLight /> <span>Dark Mode</span>
+        <IconMoonLight /> <span>Light Mode</span>
       </div>
     );
 
@@ -26,9 +26,9 @@ const ThemeSwitch = () => {
     return (
       <div
         onClick={() => setTheme("dark")}
-        className="flex items-center gap-2 cursor-pointer"
+        className="flex items-center gap-2 cursor-pointer ml-auto"
       >
-        <IconMoonDark /> <span>Light Mode</span>
+        <IconMoonDark /> <span>Dark Mode</span>
       </div>
     );
 };
