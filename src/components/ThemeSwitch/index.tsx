@@ -14,15 +14,21 @@ const ThemeSwitch = () => {
 
   if (resolvedTheme === "dark")
     return (
-      <div onClick={() => setTheme("light")}>
-        <IconMoonDark /> dark
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => setTheme("light")}
+      >
+        <IconMoonLight /> <span>Dark Mode</span>
       </div>
     );
 
   if (resolvedTheme === "light")
     return (
-      <div onClick={() => setTheme("dark")}>
-        <IconMoonLight />
+      <div
+        onClick={() => setTheme("dark")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <IconMoonDark /> <span>Light Mode</span>
       </div>
     );
 };
