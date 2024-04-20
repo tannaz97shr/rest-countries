@@ -121,3 +121,26 @@ export const IconArrowDown = (props: IconProps) => {
     </svg>
   );
 };
+
+export const IconCheck = (props: IconProps) => {
+  return (
+    <svg
+      height="24px"
+      width="24px"
+      fill="#505050"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      id="check"
+    >
+      <rect width="256" height="256" fill="none"></rect>
+      <polyline
+        fill="none"
+        stroke="#505050"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="24"
+        points="216 72.005 104 184 48 128.005"
+      ></polyline>
+    </svg>
+  );
+};

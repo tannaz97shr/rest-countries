@@ -1,7 +1,12 @@
+"use client";
+
+import { IDropdownOption } from "@/types/general";
+import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { IconSearch } from "../Icons";
 
 const Filter = () => {
+  const [region, setRegion] = useState<string>();
   return (
     <div className=" flex flex-col">
       <div className="relative">
@@ -12,6 +17,12 @@ const Filter = () => {
         />
       </div>
       <Dropdown
+        selected={region}
+        onSelect={(option: IDropdownOption) =>
+          setRegion((prev) =>
+            option.value === prev ? undefined : option.value
+          )
+        }
         className="mt-10"
         options={[
           {
