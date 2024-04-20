@@ -2,10 +2,10 @@ import { SVGProps } from "react";
 
 export type IconProps = SVGProps<SVGSVGElement>;
 
-export const IconMoonLight = (props: IconProps) => {
+export const IconSun = (props: IconProps) => {
   return (
     <svg
-      fill="#ffffff"
+      fill="#000000"
       height="16px"
       width="16px"
       version="1.1"
@@ -40,7 +40,7 @@ export const IconMoonLight = (props: IconProps) => {
 export const IconMoonDark = (props: IconProps) => {
   return (
     <svg
-      fill="#000000"
+      fill="#ffffff"
       height="16px"
       width="16px"
       version="1.1"
