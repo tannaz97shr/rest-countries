@@ -28,7 +28,7 @@ const Dropdown = ({
         <IconArrowDown />
       </button>
       {isOpen && (
-        <div className="z-10 absolute rounded bg-dark-secondary w-full mt-4 px-5 py-6 capitalize text-sm">
+        <div className="z-10 absolute rounded bg-white dark:bg-dark-secondary w-full mt-4 px-5 py-6 capitalize text-sm">
           <ul>
             {options.map((option, i) => (
               <li
