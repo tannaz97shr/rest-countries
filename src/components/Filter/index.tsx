@@ -22,15 +22,10 @@ const Filter = () => {
     [searchParams]
   );
 
-  const deleteQueryString = useCallback(
-    (name: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete(name);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const deleteQueryString = useCallback(() => {
+    const params = new URLSearchParams("");
+    return params.toString();
+  }, [searchParams]);
   return (
     <div className=" flex flex-col md:flex-row">
       <div className="relative">
@@ -75,7 +70,12 @@ const Filter = () => {
         ]}
       />
       <div className="mt-10 md:mt-0 gap-2 flex ml-auto md:ml-6">
-        <button className="rounded-lg border border-dark-secondary px-4 py-3 text-sm">
+        <button
+          onClick={() => {
+            deleteQueryString();
+          }}
+          className="rounded-lg border border-dark-secondary px-4 py-3 text-sm"
+        >
           Clear
         </button>
         <button
@@ -85,21 +85,6 @@ const Filter = () => {
                 region ? createQueryString("region", region) : ""
               }${searchName ? "&" + createQueryString("name", searchName) : ""}`
             );
-
-            // if (region) {
-            //   router.push(pathname + "?" + createQueryString("region", region));
-            // } else {
-            //   console.log("else");
-            //   router.push(pathname + "?" + deleteQueryString("region"));
-            // }
-            // if (searchName) {
-            //   router.push(
-            //     pathname + "?" + createQueryString("name", searchName)
-            //   );
-            // } else {
-            //   console.log("else");
-            //   router.push(pathname + "?" + deleteQueryString("name"));
-            // }
           }}
           className="rounded-lg box-border bg-white dark:bg-dark-secondary px-4 py-3 text-sm"
         >
