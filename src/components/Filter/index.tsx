@@ -72,7 +72,7 @@ const Filter = () => {
       <div className="mt-10 md:mt-0 gap-2 flex ml-auto md:ml-6">
         <button
           onClick={() => {
-            deleteQueryString();
+            router.push(`${pathname}?${deleteQueryString()}`);
           }}
           className="rounded-lg border border-dark-secondary px-4 py-3 text-sm"
         >
