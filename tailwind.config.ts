@@ -10,6 +10,8 @@ const config: Config = {
     colors: {
       "dark-primary": "#202C36",
       "dark-secondary": "#2B3844",
+      "light-primary": "#efefef",
+      white: "#ffffff",
     },
     extend: {
       backgroundImage: {

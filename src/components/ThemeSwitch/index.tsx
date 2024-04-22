@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { IconMoonDark, IconMoonLight } from "../Icons";
+import { IconMoonDark, IconSun } from "../Icons";
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -18,7 +18,7 @@ const ThemeSwitch = () => {
         className="flex items-center gap-2 cursor-pointer ml-auto"
         onClick={() => setTheme("light")}
       >
-        <IconMoonLight /> <span>Light Mode</span>
+        <IconMoonDark /> <span>Dark Mode</span>
       </div>
     );
 
@@ -28,7 +28,7 @@ const ThemeSwitch = () => {
         onClick={() => setTheme("dark")}
         className="flex items-center gap-2 cursor-pointer ml-auto"
       >
-        <IconMoonDark /> <span>Dark Mode</span>
+        <IconSun /> <span>Light Mode</span>
       </div>
     );
 };
