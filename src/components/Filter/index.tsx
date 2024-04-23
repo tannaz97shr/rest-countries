@@ -14,6 +14,14 @@ const Filter = () => {
     searchParams.get("region") as string
   );
   const [searchName, setSearchName] = useState<string>();
+  const [debouncedInputValue, setDebouncedInputValue] = useState("");
+
+  useEffect(() => {
+    const delayInputTimeoutId = setTimeout(() => {
+      setDebouncedInputValue(searchName as string);
+    }, 1000);
+    return () => clearTimeout(delayInputTimeoutId);
+  }, [searchName, 1000]);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -34,6 +42,17 @@ const Filter = () => {
       `${pathname}?${region ? createQueryString("region", region) : ""}`
     );
   }, [region]);
+
+  useEffect(() => {
+    if (debouncedInputValue)
+      router.push(
+        `${pathname}?${
+          debouncedInputValue
+            ? createQueryString("name", debouncedInputValue)
+            : ""
+        }`
+      );
+  }, [debouncedInputValue]);
 
   return (
     <div className=" flex flex-col md:flex-row">
