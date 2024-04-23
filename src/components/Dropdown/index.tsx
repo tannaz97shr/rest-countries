@@ -24,7 +24,11 @@ const Dropdown = ({
         onClick={() => setIsOpen((prev) => !prev)}
         className=" w-full bg-white dark:bg-dark-secondary text-sm py-3.5 px-6 rounded flex justify-between"
       >
-        <span>Filter by Region</span>
+        {selected ? (
+          <span className=" capitalize">{selected}</span>
+        ) : (
+          <span>Filter by Region</span>
+        )}
         <IconArrowDown />
       </button>
       {isOpen && (

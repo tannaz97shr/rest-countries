@@ -2,7 +2,7 @@
 
 import { IDropdownOption } from "@/types/general";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Dropdown from "../Dropdown";
 import { IconSearch } from "../Icons";
 
@@ -10,8 +10,18 @@ const Filter = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [region, setRegion] = useState<string>();
+  const [region, setRegion] = useState<string | undefined>(
+    searchParams.get("region") as string
+  );
   const [searchName, setSearchName] = useState<string>();
+  const [debouncedInputValue, setDebouncedInputValue] = useState("");
+
+  useEffect(() => {
+    const delayInputTimeoutId = setTimeout(() => {
+      setDebouncedInputValue(searchName as string);
+    }, 1000);
+    return () => clearTimeout(delayInputTimeoutId);
+  }, [searchName, 1000]);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -26,6 +36,24 @@ const Filter = () => {
     const params = new URLSearchParams("");
     return params.toString();
   }, [searchParams]);
+
+  useEffect(() => {
+    router.push(
+      `${pathname}?${region ? createQueryString("region", region) : ""}`
+    );
+  }, [region]);
+
+  useEffect(() => {
+    if (debouncedInputValue)
+      router.push(
+        `${pathname}?${
+          debouncedInputValue
+            ? createQueryString("name", debouncedInputValue)
+            : ""
+        }`
+      );
+  }, [debouncedInputValue]);
+
   return (
     <div className=" flex flex-col md:flex-row">
       <div className="relative">
@@ -69,7 +97,7 @@ const Filter = () => {
           },
         ]}
       />
-      <div className="mt-10 md:mt-0 gap-2 flex ml-auto md:ml-6">
+      {/* <div className="mt-10 md:mt-0 gap-2 flex ml-auto md:ml-6">
         <button
           onClick={() => {
             router.push(`${pathname}?${deleteQueryString()}`);
@@ -90,7 +118,7 @@ const Filter = () => {
         >
           Search
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
