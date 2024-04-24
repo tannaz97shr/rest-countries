@@ -13,7 +13,9 @@ const Filter = () => {
   const [region, setRegion] = useState<string | undefined>(
     searchParams.get("region") as string
   );
-  const [searchName, setSearchName] = useState<string>();
+  const [searchName, setSearchName] = useState<string>(
+    searchParams.get("name") as string
+  );
   const [debouncedInputValue, setDebouncedInputValue] = useState("");
 
   useEffect(() => {
@@ -31,11 +33,6 @@ const Filter = () => {
     },
     [searchParams]
   );
-
-  const deleteQueryString = useCallback(() => {
-    const params = new URLSearchParams("");
-    return params.toString();
-  }, [searchParams]);
 
   useEffect(() => {
     router.push(
