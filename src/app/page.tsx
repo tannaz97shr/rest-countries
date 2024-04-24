@@ -1,4 +1,5 @@
 import Filter from "@/components/Filter";
+import { ICountry } from "@/types/general";
 
 async function getData(region?: string, name?: string) {
   if (region) {
@@ -27,14 +28,19 @@ export default async function Home({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData(
+  const data: ICountry[] = await getData(
     searchParams?.region as string,
     searchParams?.name as string
   );
-  console.log("data :", data);
+  console.log("data :", data[0]);
   return (
     <>
       <Filter />
+      <div className="flex flex-wrap">
+        {data.map((country: ICountry) => (
+          <div>{country.name.common}</div>
+        ))}
+      </div>
     </>
   );
 }
