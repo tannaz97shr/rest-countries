@@ -1,4 +1,6 @@
+import CountryCard from "@/components/CountryCard";
 import Filter from "@/components/Filter";
+import { ICountry } from "@/types/general";
 
 async function getData(region?: string, name?: string) {
   if (region) {
@@ -27,14 +29,26 @@ export default async function Home({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData(
+  const data: ICountry[] = await getData(
     searchParams?.region as string,
     searchParams?.name as string
   );
-  console.log("data :", data);
+  console.log("data :", data[7]);
   return (
     <>
       <Filter />
+      <div className="flex flex-wrap justify-between gap-2">
+        {data.map((country: ICountry) => (
+          <CountryCard
+            flag={country.flags.png}
+            alt={country.flags.alt}
+            name={country.name.common}
+            population={country.population}
+            capital={country.capital ? country.capital[0] : ""}
+            region={country.region}
+          />
+        ))}
+      </div>
     </>
   );
 }
