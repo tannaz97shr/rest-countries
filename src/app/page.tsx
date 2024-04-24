@@ -37,7 +37,7 @@ export default async function Home({
   return (
     <>
       <Filter />
-      <div className="flex flex-wrap justify-between gap-3">
+      <div className="flex flex-wrap justify-between gap-2">
         {data.map((country: ICountry) => (
           <CountryCard
             flag={country.flags.png}

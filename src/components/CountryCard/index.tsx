@@ -18,7 +18,7 @@ const CountryCard = ({
   region,
 }: CountryCardProps) => {
   return (
-    <div className="w-64 rounded flex-col overflow-hidden bg-white mx-auto mt-10 pb-11">
+    <div className="w-64 rounded flex-col overflow-hidden bg-white mx-auto mt-10 pb-11 dark:bg-dark-secondary">
       <div className="w-full aspect-video mb-6 relative">
         <Image src={flag} layout="fill" alt={alt} />
       </div>
