@@ -1,3 +1,4 @@
+import CountryCard from "@/components/CountryCard";
 import Filter from "@/components/Filter";
 import { ICountry } from "@/types/general";
 
@@ -32,13 +33,20 @@ export default async function Home({
     searchParams?.region as string,
     searchParams?.name as string
   );
-  console.log("data :", data[0]);
+  console.log("data :", data[7]);
   return (
     <>
       <Filter />
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-between gap-3">
         {data.map((country: ICountry) => (
-          <div>{country.name.common}</div>
+          <CountryCard
+            flag={country.flags.png}
+            alt={country.flags.alt}
+            name={country.name.common}
+            population={country.population}
+            capital={country.capital ? country.capital[0] : ""}
+            region={country.region}
+          />
         ))}
       </div>
     </>
